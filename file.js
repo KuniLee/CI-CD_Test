@@ -1,2 +1,3 @@
-console.log("lololo");
-console.log("lololo2");
+fetch('https://dummyjson.com/products/14')
+  .then(res => res.json())
+  .then(console.log);
