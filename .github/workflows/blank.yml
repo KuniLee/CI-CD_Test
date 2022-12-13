@@ -18,29 +18,19 @@ on:
 
 jobs:
 
-  my_testing:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Print Hello1
-        run: echo "Hello World1"
-        
-      - name: exec few commands
-        run: | 
-          echo "Hello World1"
-          echo "Hello World1"
-          echo "App name": ${{ env.APPLICATION_NAME}}
-
   my_deploy:
     runs-on: ubuntu-latest
-    needs: my_testing
     steps:
-      - name: Print Hello2
-        run: echo "Hello World2"
-      - name: exec few commands
-        run: | 
-          echo "Hello World1"
-          echo "Hello World1"
-          echo "App name": ${{ env.DELPOY_PACKAGE_NAME}}
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Copy
+        run: |
+          mkdir dist
+          cp index.html dist/index.html
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
       
